@@ -1,43 +1,58 @@
-# [gulp](https://github.com/wearefractal/gulp)-clean [![Build Status](https://secure.travis-ci.org/peter-vilja/gulp-clean.png?branch=master)](https://travis-ci.org/peter-vilja/gulp-clean) [![NPM version](https://badge.fury.io/js/gulp-clean.png)](http://badge.fury.io/js/gulp-clean)
+![status](https://secure.travis-ci.org/robrich/gulp-rimraf.png?branch=master)
 
-> Removes files and folders.
+gulp-rimraf
+===========
 
-## Install
+[rimraf](https://github.com/isaacs/rimraf) plugin for [gulp](https://github.com/wearefractal/gulp)
 
-Install with [npm](https://npmjs.org/package/gulp-clean).
+Usage
+-----
 
-```
-npm install --save-dev gulp-clean
-```
+```javascript
+var ignore = require('gulp-ignore');
+var rimraf = require('gulp-rimraf');
 
-## Example
-
-```js
-var gulp = require('gulp');
-var clean = require('gulp-clean');
-
-gulp.task('default', function() {
-	gulp.src('app/tmp', {read: false})
-		.pipe(clean());
+gulp.task('task', function() {
+  gulp.src('./**/*.js', { read: false })
+    .pipe(ignore('node_modules/**'))
+    .pipe(rimraf());
 });
 ```
-Option read false prevents gulp to read the contents of the file and makes this task a lot faster.
+Setting option `read` to false prevents gulp to read the contents of the files and makes this task much faster.
 
-After using gulp-clean the stream still contains the app/tmp and it can be used i.e. for moving the content to different location.
+Files and folders outside the current working directory can be removed with `force` option.
 
-```js
-var gulp = require('gulp');
-var clean = require('gulp-clean');
+```javascript
+var rimraf = require('gulp-rimraf');
 
-gulp.task('default', function() {
-	gulp.src('app/tmp/index.js', {read: false})
-		.pipe(clean({force: true}));
-		.pipe(gulp.dest('dist'));
+gulp.task('task', function() {
+  gulp.src('../temp/*.js', { read: false })
+    .pipe(rimraf({ force: true }));
 });
 ```
 
-#### For safety files and folders outside the current working directory can be removed only with option force set to true.
+LICENSE
+-------
 
-## License
+(MIT License)
 
-[MIT](http://en.wikipedia.org/wiki/MIT_License) @ Peter Vilja
+Copyright (c) 2013 [Richardson & Sons, LLC](http://richardsonandsons.com/)
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

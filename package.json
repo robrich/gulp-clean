@@ -1,6 +1,6 @@
 {
   "name": "gulp-clean",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A gulp plugin for removing files and folders.",
   "keywords": [
     "gulpplugin",
@@ -19,16 +19,9 @@
     "url": "git://github.com/peter-vilja/gulp-clean.git"
   },
   "scripts": {
-    "test": "mocha test.js"
   },
   "dependencies": {
-    "rimraf": "~2.2.6",
-    "event-stream": "~3.1.0",
-    "gulp-util": "~2.2.12"
-  },
-  "devDependencies": {
-    "mocha": "~1.17.0",
-    "chai": "~1.8.1"
+    "gulp-rimraf": "*"
   },
   "engines": {
     "node": ">=0.9"
